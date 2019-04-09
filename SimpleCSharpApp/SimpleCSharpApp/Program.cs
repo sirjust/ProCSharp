@@ -10,15 +10,23 @@ namespace SimpleCSharpApp
     {
         static int Main(string[] args)
         {
-            // Display a smiple message to the user.
-            Console.WriteLine("***** First C# App *****");
-            Console.WriteLine("Hello world!");
-            Console.WriteLine();
+            // process incoming arguments with for loop
+            for(int i=0; i < args.Length; i++)
+            {
+                Console.WriteLine("Arg with for loop: {0}", args[i]);
+            }
+            // process incoming arguments with foreach loop
+            foreach(string arg in args)
+            {
+                Console.WriteLine("Arg with foreach loop: {0}", arg);
+            }
 
-            // Wait for Enter key to be pressed before shutting down.
+            // get arguments using System.Environment
+            string[] theArgs = Environment.GetCommandLineArgs();
+            foreach (string arg in theArgs)
+                Console.WriteLine("Arg from Environment: {0}", arg);
+
             Console.ReadLine();
-
-            // Return an arbitrary error code
             return -1;
         }
     }
