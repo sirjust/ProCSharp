@@ -12,22 +12,80 @@ namespace DataTypes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("bool.FalseString: {0}", bool.FalseString);
-            Console.WriteLine("bool.TrueString: {0}", bool.TrueString);
-            Console.WriteLine();
+            //Console.WriteLine("bool.FalseString: {0}", bool.FalseString);
+            //Console.WriteLine("bool.TrueString: {0}", bool.TrueString);
+            //Console.WriteLine();
 
-            CharFunctionality();
-            ParseFromStrings();
-            ParseFromStringsWithTryParse();
-            UseDatesAndTimes();
-            UseBigInteger();
-            DigitSeparators();
-            BinaryLiterals();
-            BasicStringFunctionality();
-            StringConcatenation();
-            EscapeChars();
+            //CharFunctionality();
+            //ParseFromStrings();
+            //ParseFromStringsWithTryParse();
+            //UseDatesAndTimes();
+            //UseBigInteger();
+            //DigitSeparators();
+            //BinaryLiterals();
+            //BasicStringFunctionality();
+            //StringConcatenation();
+            //EscapeChars();
+            //StringEquality();
+            //StringEqualitySpecifyingCompareRules();
+            //StringsAreImmutable();
 
             Console.ReadLine();
+        }
+
+        private static void StringsAreImmutable()
+        {
+            // set initial string value
+            string s1 = "This is my string";
+            Console.WriteLine("s1 = {0}", s1);
+            // uppercase s1
+            string upperString = s1.ToUpper();
+            Console.WriteLine("upperString = {0}", upperString);
+            //nope, s1 is still same format
+            Console.WriteLine("s1 = {0}", s1);
+            // s1 is not modified in the ToUpper() method, rather a copy is returned
+
+            string s2 = "My other string";
+            s2 = "New string value";
+
+        }
+
+        private static void StringEqualitySpecifyingCompareRules()
+        {
+            Console.WriteLine("=> String equality (Case Insensitive:");
+            string s1 = "Hello!";
+            string s2 = "HELLO!";
+            Console.WriteLine("s1 = {0}", s1);
+            Console.WriteLine("s2 = {0}", s2);
+            Console.WriteLine();
+
+            // check results of changing the default compare rules
+            Console.WriteLine($"Default rules: s1={s1},s2={s2}, s1.Equals(s2): {s1.Equals(s2)}");
+            Console.WriteLine($"Ignore case: s1={s1},s2={s2}, s1.Equals(s2, StringComparison.OrdinalIgnoreCase): {s1.Equals(s2, StringComparison.OrdinalIgnoreCase)}");
+            Console.WriteLine($"Ignore case, invariant culture: s1={s1},s2={s2}, s1.Equals(s2, StringComparison.InvariantCultureIgnoreCase): {s1.Equals(s2, StringComparison.InvariantCultureIgnoreCase)}");
+            Console.WriteLine();
+            Console.WriteLine($"Default rules: s1={s1},s2={s2}, s1.IndexOf(\"E\"): {s1.IndexOf("E")}");
+            Console.WriteLine($"Ignore case: s1={s1},s2={s2}, s1.IndexOf(\"E\"): {s1.IndexOf("E", StringComparison.OrdinalIgnoreCase)}");
+            Console.WriteLine($"Ignore case, invariant culture: s1={s1},s2={s2}, s1.IndexOf(\"E\"): {s1.IndexOf("E", StringComparison.InvariantCultureIgnoreCase)}");
+            Console.WriteLine();
+        }
+
+        private static void StringEquality()
+        {
+            Console.WriteLine("=> String Equality:");
+            string s1 = "Hello!";
+            string s2 = "Yo!";
+            Console.WriteLine("s1 = {0}", s1);
+            Console.WriteLine("s2 = {0}", s2);
+            Console.WriteLine();
+
+            // test these strings for equality
+            Console.WriteLine("s1 == s2: {0}", s1 == s2);
+            Console.WriteLine("s1 == Hello!: {0}", s1 == "Hello!");
+            Console.WriteLine("s1 == HELLO!: {0}", s1 == "HELLO!");
+            Console.WriteLine("s1 == hello!: {0}", s1 == "hello!");
+            Console.WriteLine("s1.Equals(s2): {0}", s1.Equals(s2));
+            Console.WriteLine("Yo.Equals(s2): {0}", "Yo!".Equals(s2));
         }
 
         static void CharFunctionality()
