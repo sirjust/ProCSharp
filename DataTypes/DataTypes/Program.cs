@@ -29,8 +29,48 @@ namespace DataTypes
             //StringEquality();
             //StringEqualitySpecifyingCompareRules();
             //StringsAreImmutable();
+            //FunWithStringBuilder();
+            //StringInterpolation();
 
             Console.ReadLine();
+        }
+
+        private static void StringInterpolation()
+        {
+            // Some local variables we will plug into our larger string
+            int age = 4;
+            string name = "Soren";
+
+            // Using curly bracket syntax
+            string greeting = string.Format("Hello {0}. You are {1} years old.", name, age);
+
+            // using string interpolation
+            string greeting2 = $"Hello {name}. You are {age} years old.";
+            Console.WriteLine("{0}\n{1}", greeting, greeting2);
+
+            greeting = string.Format("Hello {0}. You are {1} years old.", name.ToUpper(), age);
+            greeting2 = $"Hello {name.ToUpper()}. You are {age} years old.";
+            Console.WriteLine("{0}\n{1}", greeting, greeting2);
+
+            greeting = string.Format("\tHello {0}. You are {1} years old.", name.ToUpper(), age);
+            greeting2 = string.Format($"Hello {name.ToUpper()}. You are {age} years old.");
+            Console.WriteLine("{0}\n{1}", greeting, greeting2);
+        }
+
+        private static void FunWithStringBuilder()
+        {
+            Console.WriteLine("=> Using the StringBuilder:");
+            StringBuilder sb = new StringBuilder("**** Fantastic Games ****");
+            sb.Append("\n");
+            sb.AppendLine("Half Life");
+            sb.AppendLine("Morrowind");
+            sb.AppendLine("Deus Ex" + "2");
+            sb.AppendLine("System Shock");
+            Console.WriteLine(sb.ToString());
+            sb.Replace("2", " Invisible War");
+            Console.WriteLine(sb.ToString());
+            Console.WriteLine("sb has {0} chars.", sb.Length);
+            Console.WriteLine();
         }
 
         private static void StringsAreImmutable()
