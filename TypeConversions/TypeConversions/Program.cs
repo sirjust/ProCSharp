@@ -21,20 +21,53 @@ namespace TypeConversions
             short numb3 = 30000, numb4 = 30000;
             short answer = (short)Add(numb3, numb4);
             Console.WriteLine("{0} + {1} = {2}", numb3, numb4, answer);
+            //NarrowingAttempt();
 
-            ProcessBytes();
-            NarrowingAttempt();
+            ProcessBytesWithException();
+            ProcessBytesWithCodeBlock();
 
             Console.ReadLine();
         }
 
-        private static void ProcessBytes()
+        private static void ProcessBytesWithException()
         {
             byte b1 = 100;
             byte b2 = 250;
-            byte sum = (byte) Add(b1, b2);
-            // sum should not hold value of 350. However, we find the value of 94
-            Console.WriteLine("sum = {0}", sum);
+
+            // now the compiler will add CIL code to throw an exception if overflow/underflow occurs
+            try
+            {
+                byte sum = checked((byte) Add(b1, b2));
+
+                // sum should not hold value of 350. However, we find the value of 94
+                Console.WriteLine("sum = {0}", sum);
+            }
+            catch (OverflowException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        private static void ProcessBytesWithCodeBlock()
+        {
+            byte b1 = 100;
+            byte b2 = 250;
+
+            // we can define a checked scope here
+            try
+            {
+                checked
+                {
+                    byte sum = (byte)Add(b1, b2);
+                    Console.WriteLine("sum = {0}", sum);
+                }
+
+            }
+            catch(OverflowException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
 
