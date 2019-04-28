@@ -13,10 +13,77 @@ namespace Chapter4
             // DeclareImplicitArrays();
             // ArrayOfObjects();
             // RectMultidimensionalArray();
-            JaggedMultidimensionalArray();
+            // JaggedMultidimensionalArray();
+            // PassAndReceiveArrays();
+            // SystemArrayFunctionality();
 
             Console.ReadLine();
         }
+
+        private static void SystemArrayFunctionality()
+        {
+            Console.WriteLine("=> Working with System.Array.");
+            // Initialize items at startup.
+            string[] gothicBands = { "Tones on Tail", "Bauhaus", "Sisters of Mercy" };
+
+            // Print out names in declared order.
+            Console.WriteLine("=> Here is the array:");
+            for (int i = 0; i < gothicBands.Length; i++)
+            {
+                // Print a name
+                Console.Write(gothicBands[i] + ", ");
+            }
+            Console.WriteLine("\n");
+
+            // Reverse them
+            Array.Reverse(gothicBands);
+            Console.WriteLine("=> The reversed array: ");
+            // And print them
+            for (int i = 0; i < gothicBands.Length; i++)
+            {
+                // Print a name
+                Console.Write(gothicBands[i] + ", ");
+            }
+
+            Console.WriteLine();
+
+            // Clear out all but the first member.
+            Console.WriteLine("=> Cleared out all but one...");
+            Array.Clear(gothicBands, 1, 2);
+            for (int i = 0; i < gothicBands.Length; i++)
+            {
+                // Print a name
+                Console.Write(gothicBands[i] + ", ");
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void PassAndReceiveArrays()
+        {
+            Console.WriteLine("Arrays as params and return values.");
+            // Pass array as parameter.
+            int[] ages = {20, 22, 23, 0};
+            PrintArray(ages);
+
+            // Get array as return value.
+            string[] strs = GetStringArray();
+            foreach(string s in strs)
+            Console.WriteLine(s);
+
+            Console.WriteLine();
+        }
+
+        private static void PrintArray(int[] myInts)
+        {
+            for (int i = 0; i < myInts.Length; i++)
+                Console.WriteLine("Item {0} is {1}", i, myInts[i]);
+        }
+
+        private static string[] GetStringArray()
+        {
+            return new[] { "Hello", "from", "GetStringArray" };
+        } 
 
         private static void JaggedMultidimensionalArray()
         {
