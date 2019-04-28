@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,8 +18,51 @@ namespace Chapter4
             // JaggedMultidimensionalArray();
             // PassAndReceiveArrays();
             // SystemArrayFunctionality();
+            // Console.WriteLine(Add(12, 5));
+            // Console.WriteLine(Add2(12, 5));
+            // Console.WriteLine(Add3(50, 23, out int ans));
+            // int i; string str; bool b;
+            // FillTheseValues(out i, out str, out b);
+            // string s1 = "hello";
+            // string s2 = "world";
+            // Console.WriteLine("Before: s1: {0} s2: {1}", s1, s2);
+            // SwapStrings(ref s1, ref s2);
+            // Console.WriteLine("After: s1: {0} s2: {1}", s1, s2);
 
             Console.ReadLine();
+        }
+
+        private static void SwapStrings(ref string s1, ref string s2)
+        {
+            string tempStr = s1;
+            s1 = s2;
+            s2 = tempStr;
+        }
+
+        private static void FillTheseValues(out int a, out string b, out bool c)
+        {
+            a = 9;
+            b = "Enjoy your string.";
+            c = true;
+        }
+
+        private static int Add3(int x, int y, out int ans) => ans = x + y;
+
+        private static int Add(int x, int y)
+        {
+            int ans = x + y;
+            // Caller will not see these changes as we are modifying a copy of the original data
+            x = 10000;
+            y = 88888;
+            return ans;
+        }
+
+        private static int Add2(int x, int y)
+        {
+            // Caller will not see these changes as we are modifying a copy of the original data
+            x = 10000;
+            y = 88888;
+            return x + y;
         }
 
         private static void SystemArrayFunctionality()
