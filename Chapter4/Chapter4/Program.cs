@@ -28,9 +28,57 @@ namespace Chapter4
             // Console.WriteLine("Before: s1: {0} s2: {1}", s1, s2);
             // SwapStrings(ref s1, ref s2);
             // Console.WriteLine("After: s1: {0} s2: {1}", s1, s2);
+            //UseSimpleReturn();
+            //UseSampleRefReturn();
+            UseCalculateAverage();
 
             Console.ReadLine();
         }
+
+        private static void UseCalculateAverage()
+        {
+            Console.WriteLine("***** Fun with Methods *****");
+        }
+
+        private static double CalculateAverage(params double[] values)
+        {
+            double sum = 0;
+            if (values.Length == 0) return sum;
+            for (int i = 0; i < values.Length; i++)
+                sum += values.Length;
+            return (sum / values.Length);
+        }
+
+        private static void UseSimpleReturn()
+        {
+            #region Ref locals and params
+
+            string[] stringArray = {"one", "two", "three"};
+            int pos = 1;
+            Console.WriteLine("=> use Simple Return");
+            Console.WriteLine("Before: {0}, {1}, {2} ", stringArray[0], stringArray[1], stringArray[2]);
+            var output = SimpleReturn(stringArray, pos);
+            output = "new";
+            Console.WriteLine("After: {0}, {1}, {2}", stringArray[0], stringArray[1], stringArray[2]);
+            #endregion
+        }
+
+        private static void UseSampleRefReturn()
+        {
+            #region Ref locals and params
+
+            string[] stringArray = { "one", "two", "three" };
+            int pos = 1;
+            Console.WriteLine("=> use Ref Return");
+            Console.WriteLine("Before: {0}, {1}, {2} ", stringArray[0], stringArray[1], stringArray[2]);
+            ref var refOutput = ref SampleRefReturn(stringArray, pos);
+            refOutput = "new";
+            Console.WriteLine("After: {0}, {1}, {2}", stringArray[0], stringArray[1], stringArray[2]);
+            #endregion
+        }
+
+        private static ref string SampleRefReturn(string[] strArray, int position) => ref strArray[position];
+        private static string SimpleReturn(string[] strArray, int position) => strArray[position];
 
         private static void SwapStrings(ref string s1, ref string s2)
         {
