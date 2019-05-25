@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,16 +29,58 @@ namespace Chapter4
             // Console.WriteLine("Before: s1: {0} s2: {1}", s1, s2);
             // SwapStrings(ref s1, ref s2);
             // Console.WriteLine("After: s1: {0} s2: {1}", s1, s2);
-            //UseSimpleReturn();
-            //UseSampleRefReturn();
-            UseCalculateAverage();
+            // UseSimpleReturn();
+            // UseSampleRefReturn();
+            // UseCalculateAverage();
+            // UseEnterLogData();
+            UseAdd();
 
             Console.ReadLine();
         }
 
+        private static void UseAdd()
+        {
+            Console.WriteLine("*** Fun with Method Overloading ***");
+            // call int version
+            Console.WriteLine(Add(10, 10));
+            // call double version
+            Console.WriteLine(Add(10.5, 10.0));
+            // call long version
+            Console.WriteLine(Add(900_000_000_000, 900_000_000_000));
+
+        }
+
+        private static double Add(double x, double y) => x + y;
+        private static long Add(long x, long y) => x + y;
+
+        private static void UseEnterLogData()
+        {
+            Console.WriteLine("***** Fun with Methods *****");
+            EnterLogData("Oh no! Grid can't find data");
+            EnterLogData("Oh no! I can't find the payroll data", "CFO");
+        }
+
+        static void EnterLogData(string message, string owner = "Programmer")
+        {
+            Console.Beep();
+            Console.WriteLine($"Error: {message}");
+            Console.WriteLine($"Owner of error: {owner}");
+        }
         private static void UseCalculateAverage()
         {
             Console.WriteLine("***** Fun with Methods *****");
+            // pass in a comma-delimited list of doubles
+            double average;
+            average = CalculateAverage(4.0, 3.2, 5.7, 64.22, 87.2);
+            Console.WriteLine($"Average of data is: {average}");
+
+            // or pass in an array of doubles
+            double[] data = { 4.0, 3.2, 5.7 };
+            average = CalculateAverage(data);
+            Console.WriteLine($"Average of data is {average}");
+
+            // Average of 0 is 0
+            Console.WriteLine($"Average of data is {CalculateAverage()}");
         }
 
         private static double CalculateAverage(params double[] values)
